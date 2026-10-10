@@ -35,8 +35,9 @@ function addToCart(id) {
   if (!product) {
     return;
   }
-  if (cart.find((p) => p.id === id)) {
-    cart.map((p) => p.qty++);
+  const extension = cart.find((p) => p.id === id);
+  if (extension) {
+    extension.qty++;
   } else {
     cart.push({
       id: product.id,
@@ -81,13 +82,13 @@ function clearCart() {
 
 function renderCart() {
   cartItemsEl.innerHTML = "";
-  let total = "";
+  let total = 0;
   cart.forEach((item) => {
     const lineTotal = item.price * item.qty;
     const li = document.createElement("li");
     li.className = "cart-item";
     li.innerHTML = `<span>${item.name}</span>
-      <button class="qty-btn" data-act="dec">−</button>
+      <button class="qty-btn" data-act="dec">-</button>
       <span class="qty">${item.qty}</span>
       <button class="qty-btn" data-act="inc">+</button>
       <span class="line">${lineTotal} ₽</span>
