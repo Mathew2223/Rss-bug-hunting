@@ -17,6 +17,7 @@ const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 
 function getFiltered() {
+  grid.replaceChildren();
   let result = products;
   const search = searchInput.value;
   const category = categorySelect.value;
