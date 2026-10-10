@@ -17,7 +17,6 @@ const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 
 function getFiltered() {
-  grid.replaceChildren();
   let result = [...products];
   const search = searchInput.value.trim().toLowerCase();
   const category = categorySelect.value;
@@ -41,6 +40,7 @@ function getFiltered() {
 }
 
 function render() {
+  grid.replaceChildren();
   const items = getFiltered();
   items.forEach((p) => {
     const card = document.createElement("div");
@@ -48,7 +48,7 @@ function render() {
     card.innerHTML = `<h3>${p.name}</h3><p class="cat">${p.category}</p><p class="price">$${p.price}</p>`;
     grid.appendChild(card);
   });
-  countEl.textContent = products.length;
+  countEl.textContent = items.length;
 }
 
 searchInput.addEventListener("input", render);
